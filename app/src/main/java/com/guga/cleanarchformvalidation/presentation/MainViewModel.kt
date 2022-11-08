@@ -4,10 +4,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidateEmail
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidatePassword
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidateRepeatedPassword
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidateTerms
+import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val validateEmail: ValidateEmail = ValidateEmail(),
@@ -33,8 +35,36 @@ class MainViewModel(
                 state = state.copy(acceptedTerms = event.isAccepted )
             }
             is RegistrationFormEvent.Submit -> {
-
+                submitData()
             }
+        }
+    }
+
+    private fun submitData() {
+        val emailResult = validateEmail.execute(state.email)
+        val passwordResult = validatePassword.execute(state.password)
+        val repeatedPasswordResult = validateRepeatedPassword.execute(
+            state.password, state.repeatedPassword
+        )
+        val termsResult = validateTerms.execute(state.acceptedTerms)
+        val hasError = listOf(
+            emailResult,
+            passwordResult,
+            repeatedPasswordResult,
+            termsResult
+        ).any { !it.successful}
+
+        if (hasError){
+            state = state.copy(
+                emailError = emailResult.errorMessage,
+                passwordError = passwordResult.errorMessage,
+                repeatedPasswordError = repeatedPasswordResult.errorMessage,
+                termsError = termsResult.errorMessage
+            )
+            return
+        }
+        viewModelScope.launch {
+
         }
     }
 
