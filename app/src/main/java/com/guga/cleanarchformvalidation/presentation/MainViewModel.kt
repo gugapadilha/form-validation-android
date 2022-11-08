@@ -9,6 +9,8 @@ import com.guga.cleanarchformvalidation.domain.use_cases.ValidateEmail
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidatePassword
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidateRepeatedPassword
 import com.guga.cleanarchformvalidation.domain.use_cases.ValidateTerms
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class MainViewModel(
@@ -20,7 +22,10 @@ class MainViewModel(
 
     var state by mutableStateOf(RegistrationFormState())
 
-    fun onEvent(event: RegistrationFormEvent){
+    private val validatinEventChannel = Channel<ValidationEvent>() // send event into this CHANNEL and the UI can collect this changes
+    val validationEvents = validatinEventChannel.receiveAsFlow() //by simply collect from a flow
+
+    fun onEvent(event: RegistrationFormEvent){ // sends event from UI to viewModel here
         when(event) {
             is RegistrationFormEvent.EmailChanged -> {
                 state = state.copy(email = event.email)
@@ -64,8 +69,11 @@ class MainViewModel(
             return
         }
         viewModelScope.launch {
-
+            validatinEventChannel.send(ValidationEvent.Success)
         }
+    }
+    sealed class ValidationEvent {
+        object Success: ValidationEvent()
     }
 
 }
