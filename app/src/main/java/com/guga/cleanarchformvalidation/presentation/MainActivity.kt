@@ -89,13 +89,34 @@ class MainActivity : ComponentActivity() {
                         Text(text = state.passwordError,
                             color = MaterialTheme.colors.error)
                     }
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    TextField(value = state.password, onValueChange = {
+                        viewModel.onEvent(RegistrationFormEvent.PasswordChanged(it))
+                    },
+                        isError = state.passwordError != null,
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = {
+                            Text(text = "Password")
+                        },
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Password
+                        ),
+                        visualTransformation = PasswordVisualTransformation())
+                    if (state.passwordError != null){
+                        Text(text = state.passwordError,
+                            color = MaterialTheme.colors.error)
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+
+
                 }
-                Spacer(modifier = Modifier.height(16.dp))
+
                 }
+
             }
         }
     }
-}
 
 @Composable
 fun Greeting(name: String) {
