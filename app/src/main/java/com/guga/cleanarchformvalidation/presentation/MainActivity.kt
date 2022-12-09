@@ -1,6 +1,7 @@
 package com.guga.cleanarchformvalidation.presentation
 
 import android.os.Bundle
+import android.widget.Space
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -69,6 +70,7 @@ class MainActivity : ComponentActivity() {
                             color = MaterialTheme.colors.error)
                         }
                     }
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
