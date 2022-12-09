@@ -1,6 +1,7 @@
 package com.guga.cleanarchformvalidation.presentation
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -33,8 +34,18 @@ class MainActivity : ComponentActivity() {
                     val viewModel = viewModel<MainViewModel>()
                     val state = viewModel.state
                     val context = LocalContext.current
-                    LaunchedEffect(key1 = context){
-
+                    LaunchedEffect(key1 = context) {
+                        viewModel.validationEvents.collect { event ->
+                            when (event) {
+                                is MainViewModel.ValidationEvent.Success -> {
+                                    Toast.makeText(
+                                        context,
+                                        "Registration Succesful",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+                        }
                     }
                     Column(
                         modifier = Modifier
