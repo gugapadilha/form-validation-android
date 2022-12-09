@@ -72,16 +72,16 @@ class MainActivity : ComponentActivity() {
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TextField(value = state.email, onValueChange = {
-                        viewModel.onEvent(RegistrationFormEvent.EmailChanged(it))
+                    TextField(value = state.password, onValueChange = {
+                        viewModel.onEvent(RegistrationFormEvent.PasswordChanged(it))
                     },
-                        isError = state.emailError != null,
+                        isError = state.passwordError != null,
                         modifier = Modifier.fillMaxWidth(),
                         placeholder = {
-                            Text(text = "Email")
+                            Text(text = "Password")
                         },
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Email
+                            keyboardType = KeyboardType.Password
                         ))
                     if (state.emailError != null){
                         Text(text = state.emailError,
