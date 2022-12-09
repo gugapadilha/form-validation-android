@@ -12,7 +12,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -29,6 +31,11 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val viewModel = viewModel<MainViewModel>()
+                    val state = viewModel.state
+                    val context = LocalContext.current
+                    LaunchedEffect(key1 = context){
+
+                    }
                     Column(
                         modifier = Modifier
                             .fillMaxSize()
