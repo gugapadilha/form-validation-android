@@ -71,6 +71,24 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))
+
+                    TextField(value = state.email, onValueChange = {
+                        viewModel.onEvent(RegistrationFormEvent.EmailChanged(it))
+                    },
+                        isError = state.emailError != null,
+                        modifier = Modifier.fillMaxWidth(),
+                        placeholder = {
+                            Text(text = "Email")
+                        },
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Email
+                        ))
+                    if (state.emailError != null){
+                        Text(text = state.emailError,
+                            color = MaterialTheme.colors.error)
+                    }
+                }
+                Spacer(modifier = Modifier.height(16.dp))
                 }
             }
         }
