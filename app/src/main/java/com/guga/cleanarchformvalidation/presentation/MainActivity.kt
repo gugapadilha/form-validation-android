@@ -1,11 +1,9 @@
 package com.guga.cleanarchformvalidation.presentation
 
 import android.os.Bundle
-import android.widget.Space
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
@@ -55,9 +53,10 @@ class MainActivity : ComponentActivity() {
                             .padding(32.dp),
                         verticalArrangement = Arrangement.Center
                     ) {
-                        TextField(value = state.email, onValueChange = {
-                            viewModel.onEvent(RegistrationFormEvent.EmailChanged(it))
-                        },
+                        TextField(
+                            value = state.email, onValueChange = {
+                                viewModel.onEvent(RegistrationFormEvent.EmailChanged(it))
+                            },
                             isError = state.emailError != null,
                             modifier = Modifier.fillMaxWidth(),
                             placeholder = {
@@ -65,17 +64,21 @@ class MainActivity : ComponentActivity() {
                             },
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Email
-                            ))
-                        if (state.emailError != null){
-                            Text(text = state.emailError,
-                            color = MaterialTheme.colors.error)
+                            )
+                        )
+                        if (state.emailError != null) {
+                            Text(
+                                text = state.emailError,
+                                color = MaterialTheme.colors.error
+                            )
                         }
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TextField(value = state.password, onValueChange = {
-                        viewModel.onEvent(RegistrationFormEvent.PasswordChanged(it))
-                    },
+                    TextField(
+                        value = state.password, onValueChange = {
+                            viewModel.onEvent(RegistrationFormEvent.PasswordChanged(it))
+                        },
                         isError = state.passwordError != null,
                         modifier = Modifier.fillMaxWidth(),
                         placeholder = {
@@ -84,17 +87,21 @@ class MainActivity : ComponentActivity() {
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Password
                         ),
-                    visualTransformation = PasswordVisualTransformation())
-                    if (state.passwordError != null){
-                        Text(text = state.passwordError,
-                            color = MaterialTheme.colors.error)
+                        visualTransformation = PasswordVisualTransformation()
+                    )
+                    if (state.passwordError != null) {
+                        Text(
+                            text = state.passwordError,
+                            color = MaterialTheme.colors.error
+                        )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TextField(value = state.password, onValueChange = {
-                        viewModel.onEvent(RegistrationFormEvent.PasswordChanged(it))
-                    },
-                        isError = state.passwordError != null,
+                    TextField(
+                        value = state.repeatedPassword, onValueChange = {
+                            viewModel.onEvent(RegistrationFormEvent.RepeatedPasswordChanged(it))
+                        },
+                        isError = state.repeatedPasswordError != null,
                         modifier = Modifier.fillMaxWidth(),
                         placeholder = {
                             Text(text = "Password")
@@ -102,21 +109,24 @@ class MainActivity : ComponentActivity() {
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Password
                         ),
-                        visualTransformation = PasswordVisualTransformation())
-                    if (state.passwordError != null){
-                        Text(text = state.passwordError,
-                            color = MaterialTheme.colors.error)
+                        visualTransformation = PasswordVisualTransformation()
+                    )
+                    if (state.repeatedPasswordError != null) {
+                        Text(
+                            text = state.repeatedPasswordError,
+                            color = MaterialTheme.colors.error
+                        )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
-
-                }
 
                 }
 
             }
+
         }
     }
+}
 
 @Composable
 fun Greeting(name: String) {
