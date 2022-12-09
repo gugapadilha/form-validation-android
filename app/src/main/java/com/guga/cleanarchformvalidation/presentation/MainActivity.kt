@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -53,7 +54,9 @@ class MainActivity : ComponentActivity() {
                             .padding(32.dp),
                         verticalArrangement = Arrangement.Center
                     ) {
-
+                        TextField(value = state.email, onValueChange = {
+                            viewModel.onEvent(RegistrationFormEvent.EmailChanged(it))
+                        })
                     }
                 }
             }
