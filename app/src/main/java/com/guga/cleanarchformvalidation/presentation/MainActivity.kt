@@ -17,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -82,9 +83,10 @@ class MainActivity : ComponentActivity() {
                         },
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Password
-                        ))
-                    if (state.emailError != null){
-                        Text(text = state.emailError,
+                        ),
+                    visualTransformation = PasswordVisualTransformation())
+                    if (state.passwordError != null){
+                        Text(text = state.passwordError,
                             color = MaterialTheme.colors.error)
                     }
                 }
