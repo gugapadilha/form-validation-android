@@ -6,10 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
@@ -118,6 +115,12 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
+                    
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Checkbox(checked = state.acceptedTerms, onCheckedChange = {
+                            viewModel.onEvent(RegistrationFormEvent.AcceptedTerms(it))
+                        })
+                    }
                 }
             }
         }
