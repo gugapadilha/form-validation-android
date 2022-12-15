@@ -1,4 +1,4 @@
-package com.guga.cleanarchformvalidation.ui.theme
+package com.plcoding.cleanarchformvalidation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -1,4 +1,4 @@
-package com.guga.cleanarchformvalidation.presentation
+package com.plcoding.cleanarchformvalidation.presentation
 
 data class RegistrationFormState(
     val email: String = "",

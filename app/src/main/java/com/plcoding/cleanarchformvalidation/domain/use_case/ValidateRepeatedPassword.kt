@@ -1,11 +1,9 @@
-package com.guga.cleanarchformvalidation.domain.use_cases
-
-import android.util.Patterns
+package com.plcoding.cleanarchformvalidation.domain.use_case
 
 class ValidateRepeatedPassword {
 
-    fun execute(password: String, repeatedPassword: String) : ValidationResult{
-        if (password != repeatedPassword ){
+    fun execute(password: String, repeatedPassword: String): ValidationResult {
+        if(password != repeatedPassword) {
             return ValidationResult(
                 successful = false,
                 errorMessage = "The passwords don't match"
@@ -15,5 +13,4 @@ class ValidateRepeatedPassword {
             successful = true
         )
     }
-
 }

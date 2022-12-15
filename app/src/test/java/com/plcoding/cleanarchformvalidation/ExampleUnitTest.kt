@@ -1,4 +1,4 @@
-package com.guga.cleanarchformvalidation
+package com.plcoding.cleanarchformvalidation
 
 import org.junit.Test
 
