@@ -16,4 +16,4 @@
    + Jetpack Compose
   
    ### Imagens do projeto:
-![image](https://user-images.githubusercontent.com/79876042/209442025-2400ac11-4589-44a5-8c7a-a7d05f08cbe5.png)
+![image](https://user-images.githubusercontent.com/79876042/209442286-f9795421-b405-4b10-9417-1c0aa93692f5.png)
